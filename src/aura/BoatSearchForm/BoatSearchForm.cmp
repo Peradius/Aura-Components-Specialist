@@ -1,0 +1,28 @@
+<aura:component controller="BoatSearchController">
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="types" type="Object"/>
+	<aura:attribute name="newButtonEnabled" type="Boolean" />
+
+	<lightning:layout horizontalAlign="center">
+
+		<lightning:layoutItem padding="around-small">
+			<lightning:select aura:id="boatSelect" label="All Types" class="label-hidden">
+				<option label="All Types" value=""></option>
+				<aura:iteration items="{!v.types}" var="type">
+						<option text="{!type.label}" value="{!type.value}"/>
+				</aura:iteration>
+    		</lightning:select>
+		</lightning:layoutItem>
+
+		<lightning:layoutItem padding="around-small">
+			<lightning:button variant="brand" label="Search" onclick="{! c.handleSearch }" />
+		</lightning:layoutItem>
+
+		<aura:if isTrue="{!v.newButtonEnabled}">
+			<lightning:layoutItem padding="around-small">
+				<lightning:button variant="brand-outline" label="New" onclick="{! c.handleNew }" />
+			</lightning:layoutItem>
+		</aura:if>
+	</lightning:layout>
+</aura:component>
